@@ -30,7 +30,7 @@ const Quize = ({ data }) => {
       ) : (
         <>
           <button onClick={() => setStep(0)}>Restart Card</button>
-          <Link href="/game">
+          <Link href="/cards">
             <p>Go back</p>
           </Link>
         </>

@@ -1,5 +1,5 @@
 import Quize from "@/app/components/Quize";
-import { fetchWordsById } from "./../../lib/data";
+import { fetchWordsById } from "../../../lib/data";
 
 const Page = async ({ params }) => {
   const id = params.id;
