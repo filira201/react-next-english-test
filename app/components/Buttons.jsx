@@ -1,5 +1,6 @@
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { deleteCard } from "../lib/actions";
 
 export function CreateCard() {
   return (
@@ -25,12 +26,14 @@ export function UpdateCard({ id }) {
 }
 
 export function DeleteCard({ id }) {
+  const deleteCardWithId = deleteCard.bind(null, id);
+
   return (
-    <>
+    <form action={deleteCardWithId}>
       <button className="rounded-md border p-2 hover:bg-gray-100">
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
       </button>
-    </>
+    </form>
   );
 }

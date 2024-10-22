@@ -1,8 +1,8 @@
-import Pagination from "../components/Pagination";
-import CardsTable from "../components/CardsTable";
-import Search from "../components/Search";
-import { fetchThemesPages } from "../lib/data";
-import { CreateCard } from "../components/Buttons";
+import Pagination from "../../components/Pagination";
+import CardsTable from "../../components/CardsTable";
+import Search from "../../components/Search";
+import { fetchThemesPages } from "../../lib/data";
+import { CreateCard } from "../../components/Buttons";
 import Link from "next/link";
 
 export default async function Page({ searchParams }) {

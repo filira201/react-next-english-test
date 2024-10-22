@@ -2,8 +2,8 @@ import CreateFrom from "@/app/components/CreateForm";
 
 export default function Page() {
   return (
-    <main>
-      <p>Create Card</p>
+    <main className="p-6">
+      <h1 className="text-2xl">Create Card</h1>
       <CreateFrom />
     </main>
   );

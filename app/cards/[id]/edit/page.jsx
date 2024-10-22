@@ -3,7 +3,7 @@ import { fetchThemeById, fetchWordsById } from "@/app/lib/data";
 
 export default async function Page({ params }) {
   const id = params.id;
-  const [theme, words] = await Promise.all([
+  const [editedTheme, editedWords] = await Promise.all([
     fetchThemeById(id),
     fetchWordsById(id),
   ]);
@@ -11,7 +11,7 @@ export default async function Page({ params }) {
   return (
     <main>
       <p>Edit Card</p>
-      <EditForm theme={theme[0]} words={words} />
+      <EditForm editedTheme={editedTheme[0]} editedWords={editedWords} />
     </main>
   );
 }

@@ -30,15 +30,3 @@ export const generatePagination = (currentPage, totalPages) => {
     totalPages,
   ];
 };
-
-export function splitObjectIntoArrayPairs(obj) {
-  const entries = Object.entries(obj);
-  const result = [];
-
-  for (let i = 0; i < entries.length; i += 2) {
-    const pair = [entries[i], entries[i + 1]];
-    result.push(pair);
-  }
-
-  return result;
-}
