@@ -5,14 +5,14 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export const createCard = async (words, formData) => {
+export const createCard = async (userId, words, formData) => {
   const rawFormData = Object.fromEntries(formData.entries());
 
   const themeId = uuidv4();
   try {
     await sql`
-      INSERT INTO themes (id, name)
-      VALUES (${themeId}, ${rawFormData.cardTheme})
+      INSERT INTO themes (id, user_id, create_date, name)
+      VALUES (${themeId}, ${userId}, ${new Date()}, ${rawFormData.cardTheme})
     `;
 
     await Promise.all(

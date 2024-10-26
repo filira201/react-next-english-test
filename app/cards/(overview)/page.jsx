@@ -1,15 +1,25 @@
 import Pagination from "../../components/Pagination";
 import CardsTable from "../../components/CardsTable";
 import Search from "../../components/Search";
-import { fetchThemesPages } from "../../lib/data";
 import { CreateCard } from "../../components/Buttons";
 import Link from "next/link";
+import { fetchThemesPagesByEmail } from "../../lib/data";
+import { getUserSession } from "@/app/lib/getUserSession";
+import { redirect } from "next/navigation";
 
 export default async function Page({ searchParams }) {
+  const session = await getUserSession();
+
+  if (!session) {
+    return redirect("/");
+  }
+
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
 
-  const totalThemes = await fetchThemesPages(query);
+  const totalThemes = await fetchThemesPagesByEmail(query, session?.email);
+
+  console.log(totalThemes);
 
   return (
     <div className="w-full">
@@ -22,7 +32,7 @@ export default async function Page({ searchParams }) {
         <Search placeholder="Search cards..." />
         <CreateCard />
       </div>
-      <CardsTable query={query} currentPage={currentPage} />
+      <CardsTable session={session} query={query} currentPage={currentPage} />
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalThemes={totalThemes} />
       </div>

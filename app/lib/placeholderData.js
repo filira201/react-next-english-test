@@ -11,22 +11,27 @@ export const themes = [
   {
     id: "4a12e96e-46da-4c46-890e-4569844ab048",
     name: "Школа",
+    userId: users[0].id,
   },
   {
     id: "764c83e7-721f-46ea-a1c9-bdea37870ad6",
     name: "Еда",
+    userId: users[0].id,
   },
   {
     id: "fc043748-cb5a-43c3-baec-b58b19891617",
     name: "Спорт",
+    userId: users[0].id,
   },
   {
     id: "7d21e8c5-fc93-4b7e-9158-293f2f299a3f",
     name: "Путешествия",
+    userId: users[0].id,
   },
   {
     id: "ea3b7a12-b9ec-4e5e-9bc2-c6d35b64ff7f",
     name: "Природа",
+    userId: users[0].id,
   },
 ];
 

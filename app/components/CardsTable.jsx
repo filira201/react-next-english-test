@@ -1,8 +1,14 @@
-import { fetchFilteredThemes } from "../lib/data";
+import { fetchFilteredThemesByEmail } from "../lib/data";
 import Card from "./Card";
 
-const CardsTable = async ({ query, currentPage }) => {
-  const themes = await fetchFilteredThemes(query, currentPage);
+const CardsTable = async ({ session, query, currentPage }) => {
+  const themes = await fetchFilteredThemesByEmail(
+    query,
+    currentPage,
+    session?.email
+  );
+
+  console.log(themes);
 
   return (
     <div>
