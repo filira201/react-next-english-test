@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import Word from "./Word";
 import clsx from "clsx";
 
-export default function CreateFrom() {
+export default function CreateFrom({ userId }) {
   const [words, setWords] = useState([]);
 
   const onDeleteWord = (deletedWord) => {
@@ -39,7 +39,7 @@ export default function CreateFrom() {
     );
   };
 
-  const createCardWithWords = createCard.bind(null, words);
+  const createCardWithWords = createCard.bind(null, userId, words);
 
   return (
     <form className="my-5" action={createCardWithWords}>

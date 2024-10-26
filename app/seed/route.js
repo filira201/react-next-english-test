@@ -9,18 +9,23 @@
 //   await client.sql`
 //     CREATE TABLE IF NOT EXISTS users (
 //       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-//       name VARCHAR(255) NOT NULL,
+//       name VARCHAR(500) NOT NULL,
 //       email TEXT NOT NULL UNIQUE,
-//       password TEXT NOT NULL
+//       provider TEXT,
+//       provider_id TEXT,
+//       create_date TIMESTAMP NOT NULL,
+//       password TEXT
 //     );
 //   `;
 
 //   const insertedUsers = await Promise.all(
 //     users.map(async (user) => {
-//       const hashedPassword = await bcrypt.hash(user.password, 10);
+//       const hashedPassword = bcrypt.hashSync(user.password, 10);
 //       return client.sql`
-//         INSERT INTO users (id, name, email, password)
-//         VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+//         INSERT INTO users (id, name, email, create_date, password)
+//         VALUES (${user.id}, ${user.name}, ${
+//         user.email
+//       }, ${new Date()}, ${hashedPassword})
 //         ON CONFLICT (id) DO NOTHING;
 //       `;
 //     })
@@ -34,15 +39,17 @@
 //   await client.sql`
 //     CREATE TABLE IF NOT EXISTS themes (
 //       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-//       name VARCHAR(255) NOT NULL
+//       user_id UUID NOT NULL,
+//       create_date TIMESTAMP NOT NULL,
+//       name VARCHAR(500) NOT NULL
 //     );
 //   `;
 
 //   const insertedThemes = await Promise.all(
 //     themes.map(async (theme) => {
 //       return client.sql`
-//         INSERT INTO themes (id, name)
-//         VALUES (${theme.id}, ${theme.name})
+//         INSERT INTO themes (id, user_id, create_date, name)
+//         VALUES (${theme.id}, ${theme.userId}, ${new Date()}, ${theme.name})
 //         ON CONFLICT (id) DO NOTHING;
 //       `;
 //     })
@@ -57,8 +64,8 @@
 //     CREATE TABLE IF NOT EXISTS words (
 //       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
 //       theme_id UUID NOT NULL,
-//       english VARCHAR(255) NOT NULL,
-//       russian VARCHAR(255) NOT NULL
+//       english VARCHAR(1000) NOT NULL,
+//       russian VARCHAR(1000) NOT NULL
 //     );
 //   `;
 
